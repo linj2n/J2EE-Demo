@@ -5,10 +5,17 @@
         <servlet-name>HelloServlet</servlet-name>
         <servlet-class>HelloServlet</servlet-class>
     </servlet>
-  
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-  
+    
+    <servlet>
+  		<servlet-name>demo.JDBC.CRUDServlet</servlet-name>
+  		<servlet-class>demo.JDBC.CRUDServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>demo.JDBC.CRUDServlet</servlet-name>
+  		<url-pattern>/crudDemo</url-pattern>
+  	</servlet-mapping>
 </web-app>
