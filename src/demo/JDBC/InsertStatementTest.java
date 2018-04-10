@@ -44,8 +44,8 @@ public class InsertStatementTest {
 			preparedStatement.setString(7, cust_contact);
 			preparedStatement.setString(8, cust_email);
 			
+			// 执行 preparedStatement
 			preparedStatement.execute();
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,7 +63,5 @@ public class InsertStatementTest {
 	          se.printStackTrace();
 	       }
 		}
-	    
-		
 	}
 }
