@@ -26,7 +26,7 @@
 	<c:if test="${!empty orderItemList}">
     		<tr>
     			<td colspan="4"	align="right">
-    				<a href="/J2EE-Demo/createOrder">生成订单</a>
+    				<a href="/J2EE-Demo/createOrderItems">生成订单</a>
     			</td>
     		</tr>
     </c:if>

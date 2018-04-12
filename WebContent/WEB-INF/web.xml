@@ -40,12 +40,13 @@
     <servlet-name>demo.ShoppingCart.OrderItemListServlet</servlet-name>
     <url-pattern>/orderItemList</url-pattern>
   </servlet-mapping>
+  
   <servlet>
   	<servlet-name>demo.ShoppingCart.createOrderItemsServlet</servlet-name>
   	<servlet-class>demo.ShoppingCart.createOrderItemsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>demo.ShoppingCart.createOrderItemsServlet</servlet-name>
-  	<url-patter>/createOrderItems</url-patter>
+  	<url-pattern>/createOrderItems</url-pattern>
   </servlet-mapping>
 </web-app>
