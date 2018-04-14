@@ -6,11 +6,12 @@
 <title>Employee</title>
 </head>
 <body>
-accept-language: ${header['accept-language']}
-<br/>
-session id: ${pageContext.session.id}
-<br/>
-employee: ${requestScope.employee.name}, ${employee.address.city} <br/>
+<!-- 在 JSP 页面中，使用 EL 表达式获取隐藏对象 -->
+accept-language: ${header['accept-language']} <br>
+session id: ${pageContext.session.id} <br>
+<!-- 在 JSP 页面中，使用 EL 表达式获取 Bean 对象的属性 -->
+employee: ${requestScope.employee.name}, ${employee.address.city} <br>
+<!-- 在 JSP 页面中，使用 EL 表达式获取 Map 集合的数据 -->
 capital: ${capitals["China"]}
 </body>
 </html>

@@ -1,12 +1,17 @@
 package EL.model;
-
 public class Address {
 	private String streetName;
 	private String streetNumber;
 	private String city;
-	private String state;
+	private String province;
 	private String zipCode;
 	private String country;
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getProvince() {
+		return province;
+	}
 	public String getStreetName() {
 		return streetName;
 	}
@@ -24,12 +29,6 @@ public class Address {
 	}
 	public void setCity(String city) {
 		this.city = city;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
 	}
 	public String getZipCode() {
 		return zipCode;

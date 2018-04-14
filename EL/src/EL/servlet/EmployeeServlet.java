@@ -21,7 +21,7 @@ public class EmployeeServlet extends HttpServlet {
 		address.setStreetName("顺岗东路"); 
 		address.setStreetNumber("1000-1"); 
 		address.setCity("深圳"); 
-		address.setState("广东省"); 
+		address.setProvince("广东省"); 
 		address.setZipCode("518001"); 
 		address.setCountry("中国");
 		
@@ -40,5 +40,4 @@ public class EmployeeServlet extends HttpServlet {
 		RequestDispatcher rd = req.getRequestDispatcher("/employee.jsp");
 		rd.forward(req, resp);
 	}
-	
 }
