@@ -29,6 +29,7 @@ public class ListDistrictsServlet extends HttpServlet {
 		districts.put("深圳", new String[] 
 				{"宝安区","龙华区","罗湖区","福田区","南山区",
 				"盐田区","龙岗区","坪山区","光明新区","大鹏新区"});
+		
 		req.setAttribute("districts", districts);
 		RequestDispatcher rDispatcher = req.getRequestDispatcher("/listDistricts.jsp");
 		rDispatcher.forward(req, resp);

@@ -13,13 +13,13 @@ padding: 3px; }
 <title>Districts</title>
 </head>
 <body>
-Districts for big city in China.<br>
+Districts for big city in China.	<br>
 <table>
 	<tr style="background:#448755;color:white;font-weight:bold">
 		<td>City</td>
 		<td>Districts</td>
 	</tr>
-	<%-- 使用内外两层`<c:forEach>`第一层输出城市名，第二层输出对应行政区名。 --%>>
+	<%-- 使用内外两层`<c:forEach>`第一层输出城市名，第二层输出对应行政区名。 --%>
 	<c:forEach items="${requestScope.districts}" var="city" varStatus="status1">
 		<%-- 通过varStatus.count判断奇偶，使得列表中的奇数列背景加深，偶数不变 --%>
 		<c:if test="${status1.count%2 == 0}">
@@ -37,5 +37,14 @@ Districts for big city in China.<br>
 	</tr>
 	</c:forEach>
 </table>
+<br>
+<c:out value="省份："/> <br>
+<c:forTokens var="province" 
+		items="广东省,福建省,浙江省"
+		delims=","
+>
+	<c:out value="${province}"/> <br>
+</c:forTokens>
+
 </body>
 </html>
