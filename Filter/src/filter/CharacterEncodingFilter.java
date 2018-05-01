@@ -12,13 +12,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
-* @ClassName: CharacterEncodingFilter
-* @Description: 此过滤器用来解决解决get、post请求方式下的中文乱码问题
-* @author: 孤傲苍狼
-* @date: 2014-8-31 下午11:09:37
-*
-*/ 
 public class CharacterEncodingFilter implements Filter {
 
     private FilterConfig filterConfig = null;
