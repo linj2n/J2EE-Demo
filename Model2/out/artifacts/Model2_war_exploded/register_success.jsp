@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: linj2n
-  Date: 4/26/18
-  Time: 16:30
+  Date: 5/1/18
+  Time: 15:36
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -31,7 +31,7 @@
 <body>
 
 <div class="container">
-    <h1>欢迎，${sessionScope.user.name}！</h1>
+    <h1>注册成功！</h1>
 </div> <!-- /container -->
 
 
@@ -39,4 +39,3 @@
 <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
-

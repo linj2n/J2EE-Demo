@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +25,6 @@
 
 
     <!-- Custom styles for this template -->
-    <!-- ddddd -->
     <link href="css/signin.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -36,11 +36,16 @@
 <div class="container">
 
     <form class="form-signin" method="post" action="login">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <c:if test="${!empty sessionScope.error_msg}">
+            <c:forEach items="${sessionScope.error_msg}" var="msg">
+                <div class="alert alert-danger" role="alert">${error_msg}</div>
+            </c:forEach>
+        </c:if>
+        <h2 class="form-signin-heading">登 录</h2>
+        <label for="inputEmail" class="sr-only">邮箱</label>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="输入你的邮箱地址" required autofocus>
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="输入你密码" required>
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
@@ -55,8 +60,9 @@
     </form>
 </div> <!-- /container -->
 
-
-
 </body>
 </html>
+
+
+
 

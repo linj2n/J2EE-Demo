@@ -5,6 +5,7 @@ import demo01.util.SQLUtil;
 import java.sql.*;
 
 public class UserDAO implements IUserDAO {
+
     @Override
     public  User find(String userEmail, String userPwd) {
         User result = null;
@@ -37,23 +38,23 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public User find(String userName) {
+    public User find(String userEmail) {
         User result = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rSet = null;
         try {
-            String sql = "select * from user_ where user_name = ?";
+            String sql = "select * from user_ where user_email = ?";
             conn = SQLUtil.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userName);
+            pstmt.setString(1, userEmail);
             rSet = pstmt.executeQuery();
 
             if (rSet.next()) {
                 result = new User();
                 result.setId(rSet.getInt(1));
+                result.setName(rSet.getString(2));
                 result.setPassword(rSet.getString(3));
-                result.setName(userName);
                 result.setEmail(rSet.getString(4));
             }
             rSet.close();
@@ -87,6 +88,10 @@ public class UserDAO implements IUserDAO {
             e.printStackTrace();
         }
     }
+    public boolean isExist(String email) {
+        return !(find(email) == null);
+    }
+
     public static void main(String[] args) {
 
         Timestamp currTime = new Timestamp(System.currentTimeMillis());
@@ -99,7 +104,7 @@ public class UserDAO implements IUserDAO {
         new UserDAO().add(newUser);
 
         //        User user = new UserDAO().find("zhangsan", "123456");
-        User user = new UserDAO().find("zhangsan@gmail.com","123456");
+        User user = new UserDAO().find("zhangsan@gmail.com");
         if (user != null) System.out.println("[userId: " + user.getId() + "], [userName:  " + user.getName() + "], [userPwd: " + user.getPassword() + "], [userEmail: " + user.getEmail() + "]. ");
         else System.out.println("fail.");
     }
