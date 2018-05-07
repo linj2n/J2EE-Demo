@@ -9,60 +9,60 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Signin Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>SB Admin - Start Bootstrap Template</title>
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
 </head>
-
-<body>
-
+<body class="bg-dark">
 <div class="container">
-
-    <form class="form-signin" method="post" action="login">
-        <c:if test="${!empty sessionScope.error_msg}">
-            <c:forEach items="${sessionScope.error_msg}" var="msg">
-                <div class="alert alert-danger" role="alert">${error_msg}</div>
-            </c:forEach>
-        </c:if>
-        <h2 class="form-signin-heading">登 录</h2>
-        <label for="inputEmail" class="sr-only">邮箱</label>
-        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="输入你的邮箱地址" required autofocus>
-        <label for="inputPassword" class="sr-only">密码</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="输入你密码" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">登 录</div>
+        <div class="card-body">
+            <c:if test="${!empty sessionScope.error_msg}">
+                <c:forEach items="${sessionScope.error_msg}" var="msg">
+                    <div class="alert alert-danger" role="alert">${error_msg}</div>
+                </c:forEach>
+            </c:if>
+            <form action="login">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">邮箱</label>
+                    <input class="form-control" id="exampleInputEmail1" name="email" type="email" aria-describedby="emailHelp" placeholder="输入你的邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">密码</label>
+                    <input class="form-control" id="exampleInputPassword1" name="password" type="password" placeholder="输入你的密码">
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox"> 记住密码 </label>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit" >登录</button>
+            </form>
+            <div class="text-center">
+                <a class="d-block small mt-3" href="register">没有账号？注册</a>
+                <a class="d-block small" href="#">忘记密码?</a>
+            </div>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <br>
-        <p class="form-control">
-            New to here ?
-            <a data-ga-click="Sign in, switch to sign up" href="/register.jsp">Create an account</a>.
-        </p>
-    </form>
-</div> <!-- /container -->
-
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 </body>
+
 </html>
-
-
-
-

@@ -31,6 +31,7 @@ public class ControllerServlet extends HttpServlet {
         String uri = request.getRequestURI();
         String dispatcherURL = null;
         String error_msg = null;
+        User user = (User) request.getSession().getAttribute("user");
         int lastIndex = uri.lastIndexOf("/");
 
         String action = uri.substring(lastIndex + 1);
@@ -38,54 +39,67 @@ public class ControllerServlet extends HttpServlet {
         HttpSession httpSession = request.getSession();
 
         // 处理来自客户端的请求
-        if (action == null) {
+        if (action == "") {
             dispatcherURL = "login.jsp";
         } else if (action.equals("login")) {
-            String userEmail = request.getParameter("email");
-            String userPwd = request.getParameter("password");
-
-            // 检验账号、密码
-            User user = LoginAction.loginUser(userEmail,userPwd);
             if (user != null) {
-                httpSession.setAttribute("user", user);
-                dispatcherURL = "home.jsp";
-            } else {
-                error_msg = "账号或密码输入有误哦！";
-                httpSession.setAttribute("error_msg",error_msg);
+                // case 1. 用户已登录
+                dispatcherURL = "index.jsp";
+            } else if (request.getMethod().equals("GET")) {
+                // case 2. GET 方法请求登录
                 dispatcherURL = "login.jsp";
+            } else {
+                // case 3. 用户未登录，POST 方法登录
+                String userEmail = request.getParameter("email");
+                String userPwd = request.getParameter("password");
+
+                user = LoginAction.loginUser(userEmail,userPwd);
+                if (user == null) {
+                    // 填写账号密码有误
+                    error_msg = "账号或密码输入有误哦！";
+                    httpSession.setAttribute("error_msg",error_msg);
+                    dispatcherURL = "login.jsp";
+                } else {
+                    // 账号密码正确，将 user 存入 session
+                    httpSession.setAttribute("user", user);
+                    dispatcherURL = "index.jsp";
+                }
             }
         } else if (action.equals("register")) {
-
-            String userEmail = request.getParameter("email");
-            String userPassword = request.getParameter("password1");
-
-            // 创建注册表单类对象
-            RegisterForm registerForm = new RegisterForm();
-            registerForm.setUserEmail(request.getParameter("email"));
-            System.out.println(request.getParameter("email"));
-            registerForm.setUserName(request.getParameter("name"));
-            registerForm.setUserPassword1(request.getParameter("password1"));
-            registerForm.setUserPassword2(request.getParameter("password2"));
-
-            List<String> errors = new RegisterValidator().validate(registerForm);
-            if (errors.isEmpty()) {
-                // 创建 User 模型对象
-                User user = new User();
-                user.setEmail(registerForm.getUserEmail());
-                user.setName(registerForm.getUserName());
-                user.setPassword(registerForm.getUserPassword1());
-
-                // 执行 register action
-                RegisterAction.registerUser(user);
-
-                System.out.println(user.toString());
-                // 保存 user 对象至 Session 中
-                httpSession.setAttribute("user", user);
-                dispatcherURL = "register_success.jsp";
-
-            } else {
-                httpSession.setAttribute("error_msg",errors);
+            if (request.getMethod().equals("GET")) {
                 dispatcherURL = "register.jsp";
+            } else {
+                String userEmail = request.getParameter("email");
+                String userPassword = request.getParameter("password1");
+
+                // 创建注册表单类对象
+                RegisterForm registerForm = new RegisterForm();
+                registerForm.setUserEmail(request.getParameter("email"));
+                System.out.println(request.getParameter("email"));
+                registerForm.setUserName(request.getParameter("name"));
+                registerForm.setUserPassword1(request.getParameter("password1"));
+                registerForm.setUserPassword2(request.getParameter("password2"));
+
+                List<String> errors = new RegisterValidator().validate(registerForm);
+                if (errors.isEmpty()) {
+                    // 创建 User 模型对象
+                    user = new User();
+                    user.setEmail(registerForm.getUserEmail());
+                    user.setName(registerForm.getUserName());
+                    user.setPassword(registerForm.getUserPassword1());
+
+                    // 执行 register action
+                    RegisterAction.registerUser(user);
+
+                    System.out.println(user.toString());
+                    // 保存 user 对象至 Session 中
+                    httpSession.setAttribute("user", user);
+                    dispatcherURL = "register_success.jsp";
+
+                } else {
+                    httpSession.setAttribute("error_msg", errors);
+                    dispatcherURL = "register.jsp";
+                }
             }
         }
 
@@ -93,5 +107,8 @@ public class ControllerServlet extends HttpServlet {
         if (dispatcherURL != null) {
             response.sendRedirect(dispatcherURL);
         }
+    }
+    public static void main(String[] args) {
+
     }
 }

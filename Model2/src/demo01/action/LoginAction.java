@@ -4,6 +4,7 @@ import demo01.dao.impl.UserDAO;
 public class LoginAction {
     public static User loginUser(String userName, String userPwd) {
         User user = new UserDAO().find(userName, userPwd);
+        System.out.println("hit");
         return user;
     }
 }
